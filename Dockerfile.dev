@@ -1,19 +1,8 @@
-# build frontend
 FROM node:14.14.0-alpine3.12
-
-COPY ./frontend ./frontend-app
-WORKDIR /frontend-app
-RUN npm install
-CMD ["npm", "run", "build"]
-
 
 # build backend
-FROM node:14.14.0-alpine3.12
-
 COPY ./backend ./app
 WORKDIR /app
 RUN npm install
-
 EXPOSE 3000
-
 CMD ["npm", "run", "start"]
