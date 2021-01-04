@@ -1,0 +1,234 @@
+swagger: '2.0'
+info:
+  description: 'This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.'
+  version: '1.0.0'
+  title: 'Swagger Petstore'
+  license:
+    name: 'Apache 2.0'
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+
+schemes:
+  - 'https'
+  - 'http'
+
+tags:
+  - name: carts
+    description: carts API
+  - name: products
+    description: products API
+
+paths:
+  /carts:
+    # [POST] carts
+    post:
+      tags:
+        - carts
+      summary: Add Cart
+      parameters:
+        - name: body
+          in: body
+          description: cart Data
+          required: false
+          schema:
+            $ref: '#/definitions/cart_items'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+  /carts/{id}:
+    # [GET] carts/id
+    get:
+      tags:
+        - carts
+      summary: Find Cart By Id
+      parameters:
+        - name: id
+          in: path
+          description: Cart Id
+          required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+    # [PUT] carts/id
+    put:
+      tags:
+        - carts
+      summary: Update Cart By Id
+      parameters:
+        - name: id
+          in: path
+          description: cart Id
+          required: true
+        - name: body
+          in: body
+          description: cart Data
+          required: true
+          schema:
+            $ref: '#/definitions/cart_items'
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+    # [DELETE] carts/id
+    delete:
+      tags:
+        - carts
+      summary: Delete Cart By Id
+      parameters:
+        - name: id
+          in: path
+          description: cart Id
+          required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+  /products:
+    get: # [GET] products
+      tags:
+        - products
+      summary: Find All Products
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+    post: # [POST] products
+      tags:
+        - products
+      summary: Add Product
+      parameters:
+        - name: body
+          in: body
+          description: product Data
+          required: true
+          schema:
+            $ref: '#/definitions/products'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+  /products/{id}:
+    get: # [GET] products/id
+      tags:
+        - products
+      summary: Find Product By Id
+      parameters:
+        - name: id
+          in: path
+          description: Product Id
+          required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+    put: # [PUT] products/id
+      tags:
+        - products
+      summary: Update Product By Id
+      parameters:
+        - name: id
+          in: path
+          description: product Id
+          required: true
+        - name: body
+          in: body
+          description: product Data
+          required: true
+          schema:
+            $ref: '#/definitions/products'
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+    delete: # [DELETE] products/id
+      tags:
+        - products
+      summary: Delete Product By Id
+      parameters:
+        - name: id
+          in: path
+          description: product Id
+          required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  cart_items:
+    type: object
+    required:
+      - items
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          required:
+            - count
+            - productId
+          properties:
+            count:
+              type: number
+            productId:
+              type: string
+
+  products:
+    type: object
+    required:
+      - name
+      - description
+      - price
+    properties:
+      name:
+        type: string
+        description: product name
+      description:
+        type: string
+        description: product description
+      price:
+        type: number
+        description: product price
