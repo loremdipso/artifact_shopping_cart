@@ -39,7 +39,7 @@ export function ShoppingCart({ cart, products, removeCartItem, updateCartItem }:
 								Count: <input value={item.count} type="number" onChange={e => updateCartItem(item.productId, parseInt(e.target.value))} />
 							</div>
 
-							<div>Total: ${item.count * product.price}</div>
+							<div>Total: ${(item.count * product.price).toFixed(2)}</div>
 						</Card.Body>
 					</Card>
 				) : null;

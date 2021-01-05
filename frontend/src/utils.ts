@@ -6,7 +6,7 @@ export function numItemsInCart(items: ICartItem[]) {
 
 export function calculateCost(items: ICartItem[], products: IProduct[]) {
 	const total = items.reduce((total, item) => total + getProductPrice(products, item.productId) * item.count, 0);
-	return `$${total}`;
+	return `$${total.toFixed(2)}`;
 }
 
 export function getProductPrice(products: IProduct[], productId: string) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, MemoryRouter, Route, Switch } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Nav, Navbar } from 'react-bootstrap';
 import { ICart, ICartItem, IProduct } from './interfaces';
@@ -119,10 +119,10 @@ function App() {
 
 	return (
 		<div className="App">
-			<BrowserRouter>
+			<MemoryRouter>
 				<div className="fixed-top">
 					<Navbar bg="dark" variant="dark">
-						<Navbar.Brand href="#home">Vegan Pizzas</Navbar.Brand>
+						<Navbar.Brand>Vegan Pizzas</Navbar.Brand>
 						<Nav className="ml-auto">
 							<Switch>
 								<Route exact path="/">
@@ -162,7 +162,7 @@ function App() {
 						</span>
 					</Navbar>
 				</div>
-			</BrowserRouter>
+			</MemoryRouter>
 		</div>
 	);
 }

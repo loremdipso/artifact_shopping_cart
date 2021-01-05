@@ -22,7 +22,10 @@ export function ProductList({ products, addItemToCart }: IProductList) {
 							</Col>
 						</Row>
 					</Card.Header>
-					<Card.Body className="lalign">{product.description}</Card.Body>
+					<Card.Body className="lalign">
+						<div>{product.description}</div>
+						<div>${product.price}</div>
+					</Card.Body>
 				</Card>
 			))}
 		</div>
