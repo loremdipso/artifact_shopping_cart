@@ -13,14 +13,14 @@ services:
     networks:
       - backend
     depends_on:
-      - server
-      - frontend
       - mongo
+      - frontend
+      - server
 
   server:
     build:
       context: ./
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile.server
     container_name: server
     ports:
       - '3000:3000'
@@ -46,15 +46,12 @@ services:
     container_name: frontend
     volumes:
       - ./frontend:/app
-      - /app/node_modules
-    networks:
-      - backend
 
   mongo:
     image: mvertes/alpine-mongo
     container_name: mongo
     env_file:
-      - .env
+      - ./backend/.env
     ports:
       - '27017:27017'
     networks:

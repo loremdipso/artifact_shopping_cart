@@ -59,14 +59,9 @@ class App {
 	}
 
 	private initializeMiddlewares() {
-		if (this.env === 'production') {
-			// TODO: change this, if you were actually going to launch this
-			this.app.use(morgan('combined', { stream }));
-			this.app.use(cors({ origin: 'your.domain.com', credentials: true }));
-		} else if (this.env === 'development') {
-			this.app.use(morgan('dev', { stream }));
-			this.app.use(cors({ origin: true, credentials: true }));
-		}
+		// You would change this, if you were actually going to launch this
+		this.app.use(morgan('dev', { stream }));
+		this.app.use(cors({ origin: true, credentials: true }));
 
 		this.app.use(hpp());
 		this.app.use(helmet());
